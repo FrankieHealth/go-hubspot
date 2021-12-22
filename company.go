@@ -4,14 +4,14 @@ const (
 	companyBasePath = "companies"
 )
 
-// CompanyService is an interface of contact endpoints of the HubSpot API.
+// CompanyService is an interface of company endpoints of the HubSpot API.
 // HubSpot companies store information about individuals.
 // It can also be associated with other CRM objects such as deal and company.
 // Reference: https://developers.hubspot.com/docs/api/crm/companies
 type CompanyService interface {
-	Get(companyID string, contact interface{}, option *RequestQueryOption) (*ResponseResource, error)
+	Get(companyID string, company interface{}, option *RequestQueryOption) (*ResponseResource, error)
 	Create(company interface{}) (*ResponseResource, error)
-	Update(companyID string, contact interface{}) (*ResponseResource, error)
+	Update(companyID string, company interface{}) (*ResponseResource, error)
 	AssociateAnotherObj(companyID string, conf *AssociationConfig) (*ResponseResource, error)
 }
 
@@ -21,7 +21,7 @@ type CompanyServiceOp struct {
 	client      *Client
 }
 
-var _ CompanyService = (*ContactServiceOp)(nil)
+var _ CompanyService = (*CompanyServiceOp)(nil)
 
 type Company struct {
 	AboutUs                   *HsStr  `json:"about_us,omitempty"`
